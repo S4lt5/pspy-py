@@ -10,8 +10,7 @@ class PSpy:
     monitor_directories = ["/tmp", "/var","/bin", "/sbin","usr"]
     
     def __init__(self) -> None:
-        self.pids = self.getPIDS()
-        print(self.pids)
+        self.pids = self.getPIDS()        
 
 
     def getNewPIDS(self):
@@ -40,8 +39,7 @@ class PSpy:
             time.sleep(0.001)
             pids = self.getNewPIDS()            
             for p in pids:                
-                infos = self.getPIDInfo(p)
-                print(infos)
+                infos = self.getPIDInfo(p)                
                 all_process_infos.append(infos)
 
         #if using threaded output value
