@@ -17,7 +17,7 @@ def test_the_package_imports():
 
 def test_i_see_my_pids_i_create():    
     from pspy import pspy as pspy_module
-    P = pspy_module.PSpy()
+    P = pspy_module.PSpy()    
     SLEEP_TIME = 10
     print(f"Sleeping {SLEEP_TIME}s, to see if I can catch new processes.")    
     subprocess.Popen(["for i in {1..10}; do ping 8.8.8.8 -c 1; sleep 1; done"],shell=True)    
@@ -36,7 +36,17 @@ def test_i_see_my_pids_i_create():
     #kinda silly, but helps output on pytest -v
     assert found_ping == "found_ping"
     assert found_bash == "found_bash"    
-    assert P is not None    
+    
+
+
+def test_safeguards():
+    from pspy import pspy as pspy_module
+    P = pspy_module.PSpy()
+    results = P.Spin(-100)
+    assert results == [("0","nope","nope")]
+
+    results = P.Spin(600)
+    assert results == [("0","nope","nope")]        
 
 
 def test_stuff():

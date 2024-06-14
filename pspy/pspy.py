@@ -1,12 +1,12 @@
 import os, time, pwd, re
 PROC = "/proc"
 
-#absolute max this wil run for
-MAX_SECONDS_SAFEGUARD = 180
 
 
 
 class PSpy:
+    #absolute max this wil run for
+    MAX_SECONDS_SAFEGUARD = 180
     monitor_directories = ["/tmp", "/var","/bin", "/sbin","usr"]
     
     def __init__(self) -> None:
@@ -31,7 +31,7 @@ class PSpy:
         """
         Run for seconds seconds, and return an array of tuples of new processes
         """
-        if seconds < 0 or seconds > MAX_SECONDS_SAFEGUARD:
+        if seconds < 0 or seconds > PSpy.MAX_SECONDS_SAFEGUARD:
             return [("0","nope","nope")]
         
         start_time = time.perf_counter()        
