@@ -26,7 +26,7 @@ class PSpy:
         return self.Spin(seconds)
     
     
-    def Spin(self,seconds=5,outlist=None):
+    def Spin(self,seconds=5,sleepTime=0.001,outlist=None):
         """
         Run for seconds seconds, and return an array of tuples of new processes
         """
@@ -36,7 +36,7 @@ class PSpy:
         start_time = time.perf_counter()        
         all_process_infos = []
         while time.perf_counter() < start_time + seconds:
-            time.sleep(0.001)
+            time.sleep(sleepTime)
             pids = self.getNewPIDS()            
             for p in pids:                
                 infos = self.getPIDInfo(p)                
